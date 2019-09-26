@@ -1,0 +1,60 @@
+<div class="text-center">
+  <div class="user-form-toggler container">
+    <a href="#" (click)="toggleNewUserForm()">{{formDisplay}}</a>
+  </div>
+  <div class="user-add-container container" *ngIf="displayNewUserForm">
+    <form *ngIf="newUserForm" (submit)="addUser()" [formGroup]="newUserForm" id="newUserForm" novalidate>
+      <div class="form-group">
+        <input formControlName="username" placeholder="Username" [(ngModel)]="new_user.username">
+      </div>
+      <div class="form-group">
+        <input type="password" formControlName="password" placeholder="Password" [(ngModel)]="new_user.password">
+      </div>
+      <div class="form-group">
+        <input formControlName="email" placeholder="Email" [(ngModel)]="new_user.email">
+      </div>
+      <div class="form-group">
+        <input formControlName="firstname" placeholder="First Name" [(ngModel)]="new_user.firstname">
+      </div>
+      <div class="form-group">
+        <input formControlName="lastname" placeholder="Last Name" [(ngModel)]="new_user.lastname">
+      </div>
+      <div class="form-group">
+        <button>Submit</button>
+      </div>
+    </form>
+  </div>
+  <div class="user-list-container container">
+    <table style="width:30em; margin:0 auto;">
+      <thead>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Action</th>
+      </thead>
+      <tbody *ngIf="!users" class="text-center">
+        <td></td>
+        <td></td>
+        <td>No User</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tbody>
+      <tbody *ngIf="users">
+        <tr *ngFor="let user of users">
+          <td>{{user.id}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.firstname}}</td>
+          <td>{{user.lastname}}</td>
+          <td>
+            <a href="#" [routerLink]="['user', user.id]">Edit</a>
+            <a href="#" (click)="removeUser(user.id)" class="mar-l-5">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

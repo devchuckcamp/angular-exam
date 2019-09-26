@@ -1,0 +1,16 @@
+<div class="user-detail-container container" *ngIf="user">
+  <a href="#" [routerLink]="['/']">Back</a>
+</div>
+<div class="user-detail-container container" *ngIf="user">
+  <form *ngIf="userForm" (submit)="updateUser()" [formGroup]="userForm" id="userForm" novalidate>
+    <div class="form-group">
+      <input formControlName="firstname" placeholder="First Name" [(ngModel)]="user.firstname">
+    </div>
+    <div class="form-group">
+      <input formControlName="lastname" placeholder="Last Name" [(ngModel)]="user.lastname">
+    </div>
+    <div class="form-group">
+      <button>Submit</button>
+    </div>
+  </form>
+</div>
